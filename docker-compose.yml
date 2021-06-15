@@ -1,0 +1,24 @@
+version: '2'
+services:
+    sheriffapi:
+        container_name: sheriffapi
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: sheriffapi:latest
+        expose:
+          - 80
+        environment:
+          VIRTUAL_HOST: sheriffcloud.com.br
+          LETSENCRYPT_HOST: sheriffcloud.com.br
+          LETSENCRYPT_EMAIL: admin@sheriffcloud.com.br
+        ports:
+            - "8080:80"
+        networks:
+            - nginx-proxy
+#networks:
+#    default:
+#        external:
+#            name: nginx-proxy
+#    spring-cloud-network:
+#        driver: bridge
